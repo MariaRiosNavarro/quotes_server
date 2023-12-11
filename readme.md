@@ -1,5 +1,9 @@
 ### Quotes_server
 
+Structure:
+
+filestorage->model->controller->router->app
+
 ## Setup
 
 npm init -y

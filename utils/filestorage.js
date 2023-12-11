@@ -5,7 +5,7 @@ import { v4 } from "uuid";
 //data base folder
 const DBFOLDER = "storage";
 
-//create folder if doesnt exist
+//create folder if doesnt exist (call the funktion at the end of this document)
 export const setup = () => {
   fs.access(`./${DBFOLDER}/`)
     .then(() => console.log("Storage Folder allready exist"))
@@ -32,3 +32,6 @@ export const saveDocument = (document) => {
       )
     );
 };
+
+// read line 8
+setup();
