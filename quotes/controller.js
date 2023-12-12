@@ -1,4 +1,9 @@
-import { getAllDocs } from "../utils/filestorage.js";
+import {
+  getAllDocs,
+  getOneDoc,
+  deleteOneDoc,
+  editOneDoc,
+} from "../utils/filestorage.js";
 import { Quote } from "./model.js";
 import multer from "multer";
 
@@ -69,3 +74,7 @@ export const getAllQuotes = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+//!GET ONE
+
+export const getOneQuote = async (req, res) => {};

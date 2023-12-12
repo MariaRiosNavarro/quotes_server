@@ -22,22 +22,37 @@ export const setup = async () => {
   }
 };
 
+// with the same create a function to do subfolders for the collections to use in save documents
+
+export const setupCollection = async (collection) => {
+  try {
+    // Check if the storage folder already exists
+    await fs.access(`./${DBFOLDER}/${collection}/`);
+    console.log(`${collection} folder already exists.✅`);
+  } catch (error) {
+    // Handle errors, log the error message
+    console.error(
+      `Error checking or creating ${collection} folder❌: ${error.message}`
+    );
+    // Create the storage folder if it doesn't exist
+    await fs.mkdir(`./${DBFOLDER}/${collection}/`);
+    console.log(`${collection} folder created successfully. ✅`);
+  }
+};
+
 //#save Document , f.e = /storage/quote/dgethsjsiasjhdiuwhhdw
 
 export const saveDocument = async (document) => {
   // Generate a unique ID for the document
   document.id = v4();
-
   try {
-    // Ensure the collection folder exists, creating it if necessary
-    await fs.mkdir(`./${DBFOLDER}/${document.collection}`);
-
+    // Ensure the collection folder exists, creating it if necessary (function from above)
+    await setupCollection(document.collection);
     // Write the document to a file in the collection folder
     await fs.writeFile(
       `./${DBFOLDER}/${document.collection}/${document.id}`,
       JSON.stringify(document)
     );
-
     console.log(
       `Document saved successfully with ID ${document.id} to collection ${document.collection}✅.`
     );
