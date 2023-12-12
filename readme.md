@@ -1,8 +1,13 @@
 ### Quotes_server
 
+All routes for QUOTES collection works
+
+> [!NOTE]
+> TODO: POST & PUT with files & New Collections: Category & Autor
+
 Structure:
 
-filestorage->model->controller->router->app
+filestorage->(model)->controller->router->app
 
 ## Setup
 
