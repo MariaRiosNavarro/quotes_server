@@ -12,7 +12,7 @@ export const addQuote = (req, res) => {
     favorite = false,
   } = req.body;
 
-  console.log("-------------🤔", req.body);
+  //   console.log("-------------🤔", req.body);
 
   //   Check if at least the quotation is present
   if (!quote) {
