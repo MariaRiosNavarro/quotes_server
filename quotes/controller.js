@@ -100,7 +100,27 @@ export const deleteOneQuote = async (req, res) => {
       .json({ message: `Quote with id= ${id} sucessfully deleted ✅` });
   } catch (error) {
     // Handle errors
-    console.error(`Error Deleting Quote with id= ${id} ❌:`, error);
+    console.error(`Error deleting Quote with id= ${id} ❌:`, error);
+    res.status(500).json({ error: "Internal Server Error ❌" });
+  }
+};
+
+//!Edit ONE
+
+export const editOneQuote = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const newData = req.body;
+    console.log("-------------👻", newData);
+
+    const data = await editOneDoc(id, "quotes", newData);
+    // Send a successful response
+    res
+      .status(201)
+      .json({ message: `Quote with id= ${id} sucessfully updated ✅`, data });
+  } catch (error) {
+    // Handle errors
+    console.error("Error editing quote ❌:", error);
     res.status(500).json({ error: "Internal Server Error ❌" });
   }
 };
