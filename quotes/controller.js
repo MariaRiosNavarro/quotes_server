@@ -1,7 +1,8 @@
+import { getAllDocs } from "../utils/filestorage.js";
 import { Quote } from "./model.js";
 import multer from "multer";
 
-//! Form values  from Frontend
+//! ADD Form values  from Frontend
 
 export const addQuote = async (req, res) => {
   try {
@@ -42,40 +43,7 @@ export const addQuote = async (req, res) => {
   }
 };
 
-// export const addQuote = (req, res) => {
-//   // Extract data from the body of the request
-//   const {
-//     quote,
-//     category = "unassigned",
-//     autor = "unknown",
-//     favorite = false,
-//   } = req.body;
-
-//   //   console.log("-------------🤔", req.body);
-
-//   //   Check if at least the quotation is present
-//   if (!quote) {
-//     return res.status(400).json({ error: "Quote is necessary." });
-//   }
-
-//   // Create a new Quote instance with the request data
-//   const newQuoteData = {
-//     quote,
-//     category,
-//     autor,
-//     favorite,
-//   };
-
-//   const newQuote = Quote(newQuoteData);
-
-//   // Save the new quote
-//   newQuote.save();
-
-//   // Send a successful response
-//   res.status(201).json({ message: "Quote successfully added" });
-// };
-
-//! Fixed values example
+//Fixed values example
 
 // export const addQuote = (req, res) => {
 //   const newQuoteData = {
@@ -88,3 +56,16 @@ export const addQuote = async (req, res) => {
 //   const newQuote = Quote(newQuoteData);
 //   newQuote.save();
 // };
+
+//! GET ALL
+
+export const getAllQuotes = async (req, res) => {
+  try {
+    const data = await getAllDocs("quotes");
+    res.status(201).json({ message: "Quotes successfully retrieved", data });
+  } catch (error) {
+    // Handle errors
+    console.error("Error Reading all quotes:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};

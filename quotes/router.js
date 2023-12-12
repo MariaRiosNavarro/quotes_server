@@ -1,5 +1,6 @@
 import express from "express";
 import { addQuote } from "./controller.js";
+import { getAllQuotes } from "./controller.js";
 //add multer to parse forms
 import multer from "multer";
 
@@ -9,3 +10,4 @@ export const router = new express.Router();
 
 //add multer for forms
 router.post("/quotes", upload.none(), addQuote);
+router.get("/quotes", getAllQuotes);
