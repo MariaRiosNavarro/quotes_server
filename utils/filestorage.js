@@ -4,7 +4,7 @@ import { v4 } from "uuid";
 //data base folder
 const DBFOLDER = "storage";
 
-//#create folder if doesnt exist (call the funktion at the end of this document)-try/c
+//#create folder if doesnt exist (call the funktion at the end of this document)-
 
 export const setup = async () => {
   try {
@@ -22,11 +22,11 @@ export const setup = async () => {
   }
 };
 
-// with the same create a function to do subfolders for the collections to use in save documents
+//#with the same create a function to do subfolders for the collections to use in save documents
 
 export const setupCollection = async (collection) => {
   try {
-    // Check if the storage folder already exists
+    // Check if the collection folder already exists
     await fs.access(`./${DBFOLDER}/${collection}/`);
     console.log(`${collection} folder already exists.✅`);
   } catch (error) {
@@ -34,7 +34,7 @@ export const setupCollection = async (collection) => {
     console.error(
       `Error checking or creating ${collection} folder❌: ${error.message}`
     );
-    // Create the storage folder if it doesn't exist
+    // Create the collection folder if it doesn't exist
     await fs.mkdir(`./${DBFOLDER}/${collection}/`);
     console.log(`${collection} folder created successfully. ✅`);
   }

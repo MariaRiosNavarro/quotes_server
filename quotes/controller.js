@@ -19,8 +19,6 @@ export const addQuote = async (req, res) => {
       favorite = false,
     } = req.body;
 
-    //   console.log("-------------🤔", req.body);
-
     //   Check if at least the quote.quote is present
     if (!quote) {
       return res.status(400).json({ error: "Quote is necessary." });
@@ -40,11 +38,11 @@ export const addQuote = async (req, res) => {
     await newQuote.save();
 
     // Send a successful response
-    res.status(201).json({ message: "Quote successfully added" });
+    res.status(201).json({ message: "Quote successfully added ✅" });
   } catch (error) {
     // Handle errors
-    console.error("Error adding quote:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error adding quote ❌:", error);
+    res.status(500).json({ error: "Internal Server Error ❌" });
   }
 };
 
@@ -67,14 +65,42 @@ export const addQuote = async (req, res) => {
 export const getAllQuotes = async (req, res) => {
   try {
     const data = await getAllDocs("quotes");
-    res.status(201).json({ message: "Quotes successfully retrieved", data });
+    res.status(201).json({ message: "Quotes successfully retrieved ✅", data });
   } catch (error) {
     // Handle errors
-    console.error("Error Reading all quotes:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error Reading all quotes ❌:", error);
+    res.status(500).json({ error: "Internal Server Error ❌" });
   }
 };
 
 //!GET ONE
 
-export const getOneQuote = async (req, res) => {};
+export const getOneQuote = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await getOneDoc(id, "quotes");
+    res
+      .status(201)
+      .json({ message: `Quote with id= ${id} sucessfully retrieved ✅`, data });
+  } catch (error) {
+    // Handle errors
+    console.error(`Error Reading Quote with id= ${id} ❌:`, error);
+    res.status(500).json({ error: "Internal Server Error ❌" });
+  }
+};
+
+//!DELETE ONE
+
+export const deleteOneQuote = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await deleteOneDoc(id, "quotes");
+    res
+      .status(201)
+      .json({ message: `Quote with id= ${id} sucessfully deleted ✅` });
+  } catch (error) {
+    // Handle errors
+    console.error(`Error Deleting Quote with id= ${id} ❌:`, error);
+    res.status(500).json({ error: "Internal Server Error ❌" });
+  }
+};
