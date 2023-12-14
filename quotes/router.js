@@ -8,7 +8,6 @@ import {
 import { getAllQuotes } from "./controller.js";
 //add multer to parse forms
 import multer from "multer";
-import { getOneDoc } from "../utils/filestorage.js";
 
 const upload = multer({ dest: "../uploads" });
 
