@@ -64,7 +64,7 @@ export const addQuote = async (req, res) => {
 export const getAllQuotes = async (req, res) => {
   try {
     const data = await getAllDocs("quotes");
-    res.status(201).json({ message: "Quotes successfully retrieved ✅", data });
+    res.status(200).json({ message: "Quotes successfully retrieved ✅", data });
   } catch (error) {
     // Handle errors
     console.error("Error Reading all quotes ❌:", error);
@@ -79,7 +79,7 @@ export const getOneQuote = async (req, res) => {
     const id = req.params.id;
     const data = await getOneDoc(id, "quotes");
     res
-      .status(201)
+      .status(200)
       .json({ message: `Quote with id= ${id} sucessfully retrieved ✅`, data });
   } catch (error) {
     // Handle errors
